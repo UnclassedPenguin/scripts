@@ -1,4 +1,4 @@
-# myscripts
+# Scripts
 A random collection of useful scripts
 
 1. [easyssh](#easyssh)
