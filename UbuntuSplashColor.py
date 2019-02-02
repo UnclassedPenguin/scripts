@@ -14,20 +14,24 @@ path3 = '/usr/share/gnome-shell/theme/ubuntu.css'
 
 def main():
     colour = get_Colour()
+    print('\n')
     print("Colour = {}".format(colour[0]))
     print("Colour(RGB) = {}".format(colour[1]))
     print("Colour(RGBP) = {}".format(colour[2]))
+    print('\n')
     create_Backups()
     parse_Login(colour[0])
     parse_Grub(colour[1])
     parse_Script(colour[2])
     print('\n')
+    print('Done!\n')
     print('Please reboot to take affect')
     print('\n')
 
 def get_Colour():
     while True:
-        colour = input("What colour would you like to change to(in hex #000000)?\n")
+        print("What colour would you like to change to?(in hex #000000)\n")
+        colour = input("> ")
         if colour[0] == '#' and len(colour) == 7:
             colourrgb = '{},{},{},0'.format(int(colour[1:3], 16), int(colour[3:5], 16), int(colour[5:], 16))
             colourrgbp = '{}, {}, {}'.format(round(int(colour[1:3], 16)/256, 2), round(int(colour[3:5], 16)/256, 2), round(int(colour[5:], 16)/256, 2))
@@ -35,7 +39,7 @@ def get_Colour():
             return colour, colourrgb, colourrgbp
             break
         else:
-            print("invalid colour")
+            print("Invalid colour. Please use a valid hex colour.")
 
 def create_Backups():
     if os.path.isfile(path1+'.old'):
@@ -45,6 +49,7 @@ def create_Backups():
         print('ubuntu-logo.grub.old file does not exist...Creating...')
         print('\n')
         call('cp {} {}'.format(path1, path1+'.old'), shell=True)
+
     if os.path.isfile(path2+'.old'):
         print('ubuntu-logo.script.old file exists')
         print('\n')
@@ -52,6 +57,7 @@ def create_Backups():
         print('ubuntu-logo.script.old file does not exist...Creating...')
         print('\n')
         call('cp {} {}'.format(path2, path2+'.old'), shell=True)
+
     if os.path.isfile(path3+'.old'):
         print('ubuntu.css.old file exists')
         print('\n')
@@ -62,6 +68,7 @@ def create_Backups():
 
 def parse_Login(colour):
     print('Parsing Login File...')
+    print('({})'.format(path3))
     print('\n')
     file1 = open(path3, 'r')
     filelist = []
@@ -96,6 +103,7 @@ def parse_Login(colour):
 
 def parse_Grub(colourrgb):
     print('Parsing Grub File...')
+    print('({})'.format(path1))
     print('\n')
     file1 = open(path1, 'r')
     file2 = open('/tmp/ubuntu-logo.grub.working', 'w')
@@ -111,7 +119,9 @@ def parse_Grub(colourrgb):
     call('update-grub', shell=True)
 
 def parse_Script(colourrgbp):
+    print('\n')
     print('Parsing Script File...')
+    print('({})'.format(path2))
     print('\n')
     file1 = open(path2, 'r')
     file2 = open('/tmp/ubuntu-logo.script.working', 'w')
