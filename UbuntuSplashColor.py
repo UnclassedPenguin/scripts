@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
 '''
-Author: UnclassedPenguin
+__author__ = "UnclassedPenguin"
+__copyright__ = "Copyright 2019 UnclassedPenguin"
+__version__ = "1.0.0"
 
 '''
 from subprocess import call
