@@ -13,7 +13,7 @@ Save file.
 Execute file with sudo privilege using python3.
 
 ```
-sudo python3 UbuntuSplashColor.py
+$ sudo python3 UbuntuSplashColor.py
 ```
 
 Script will edit:
