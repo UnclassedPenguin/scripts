@@ -10,10 +10,15 @@ Save script to a folder that is in your path, edit in your username and ip of se
 ## UbuntuSplashColor
 
 Save file. 
-Execute file with sudo privilege. 
+Execute file with sudo privilege using python3.
+
+'''
+sudo python3 UbuntuSplashColor.py
+'''
+
 Script will edit:
-  1. '/usr/share/plymouth/themes/ubuntu-logo/ubun    tu-logo.grub'
-  2. '/usr/share/plymouth/themes/ubuntu-logo/ubun    tu-logo.script'
+  1. '/usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.grub'
+  2. '/usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.script'
   3. '/usr/share/gnome-shell/theme/ubuntu.css'
 
 Backups of all files will be saved in same directory with .old extension. 
