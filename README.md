@@ -12,9 +12,9 @@ Save script to a folder that is in your path, edit in your username and ip of se
 Save file. 
 Execute file with sudo privilege using python3.
 
-'''
+```
 sudo python3 UbuntuSplashColor.py
-'''
+```
 
 Script will edit:
   1. '/usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.grub'
