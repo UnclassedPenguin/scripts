@@ -24,8 +24,14 @@ port=12345
 
 ## UbuntuSplashColor
 
-Save file. 
-Execute file with sudo privilege using python3.
+**Use at your own risk. This is an old program, not maintained, might be smart to check that the files it is going to edit are actually on your system**
+
+This is a program that changes the color of the ubuntu splash screens as you boot up your computer running ubuntu.
+I have an article [here](https://blog.unclassed.ca/change-ubuntu-color-manually/) that explains how to manually do these changes. This is just an automation of that process. 
+
+
+- Save file. 
+- Execute file with sudo privilege using python3.
 
 ```
 $ sudo python3 UbuntuSplashColor.py
@@ -38,3 +44,4 @@ Script will edit:
 
 Backups of all files will be saved in same directory with .old extension. 
 If you have any issues just delete the new files and rename the files with .old to original name.
+
