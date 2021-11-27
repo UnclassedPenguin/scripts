@@ -5,7 +5,22 @@ A random collection of useful scripts
 2. [UbuntuSplashColor.py](#UbuntuSplashColor)
 ## easyssh
 
-Save script to a folder that is in your path, edit in your username and ip of server, change port if needed. 
+- Clone the repository, or download just easyssh  
+
+- Place it in a folder that is in your path  
+
+- Open the file and edit username, ip, port, and the name of your server.
+
+```
+user="yourusername"
+server=192.168.1.1
+servername="yourServerName"
+port=12345
+```
+- Give the script executable permission  
+`$ chmod +x easyssh`
+
+- Execute!
 
 ## UbuntuSplashColor
 
