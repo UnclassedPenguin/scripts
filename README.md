@@ -3,6 +3,7 @@ A random collection of useful scripts
 
 1. [easyssh](#easyssh)
 2. [UbuntuSplashColor.py](#UbuntuSplashColor)
+3. [Password Check](#PasswordCheck)
 ## easyssh
 
 - Clone the repository, or download just easyssh  
@@ -44,4 +45,21 @@ Script will edit:
 
 Backups of all files will be saved in same directory with .old extension. 
 If you have any issues just delete the new files and rename the files with .old to original name.
+
+## PasswordCheck
+
+This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected. For more information watch this [video](https://www.youtube.com/watch?v=hhUb5iknVJs). 
+
+Usage: 
+
+- Save file.
+- Execute with python3
+
+```
+$ python3 passwordcheck.py
+```
+
+It will ask for your password, type it in and it will check. Will either output that it found it or it didn't.
+
+**Be careful using any program like this that you find on the internet. I am not collecting anything, you can read the code, but people with bad intent could. Make sure you understand what this program is doing.**
 
