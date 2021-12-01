@@ -12,9 +12,6 @@ class Passwd():
                 break
             else:
                 print("Please input a password.")
-        print(password)
-        print(type(password))
-        print(len(password))
         return password
 
     # Takes the password and hashes it to SHA-1    
@@ -55,26 +52,34 @@ class Passwd():
 
         if isFound == True:
             splitNum = foundPassword.split(':')
+            commaNum = '{:,}'.format(int(splitNum[1]))
             print("\n")
-            print("Password has been found {} times! -- {}".format(splitNum[1], foundPassword))
+            print("Password has been found {} times! -- {}".format(commaNum, foundPassword))
         elif isFound == False:
             print("\n")
             print("Password was not found. Nice!")
 
 def main():
-    run = True
-    while run == True: 
-        passwd = Passwd()
-        passwd.checkPassword()
+    try:
+        run = True
+        while run == True: 
+            passwd = Passwd()
+            passwd.checkPassword()
+            print("\n")
+            runInput = input("Would you like to check another password? (Y or n) ")
+            print("\n")
+            
+            if runInput.lower() == 'y' or runInput.lower() == 'yes':
+                run = True
+            elif runInput.lower() == 'n' or runInput.lower() == 'no':
+                run = False
+                print("Thanks for using UnclassedPenguin Password Checker!")
+                print("\n")
+    except KeyboardInterrupt:
         print("\n")
-        runInput = input("Would you like to check another password? (Y or n) ")
+        print("Thanks for using UnclassedPenguin Password Checker!")
         print("\n")
-        
-        if runInput.lower() == 'y' or runInput.lower() == 'yes':
-            run = True
-        elif runInput.lower() == 'n' or runInput.lower() == 'no':
-            run = False
-            print("Thanks for using UnclassedPenguin Password Checker!")
+
 
 if __name__ == '__main__':
     main()
