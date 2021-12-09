@@ -3,17 +3,17 @@
 choice = 'y'
 cable1 = 0
 cable = 0
-month1 = 0
-month2 = 0
+daysInMonth = 0
+dayOfMonth = 0
 package = 0
 mega = 49.99
-megax = 59.99
-megag = 79.99
+megax = 69.99
+megag = 89.99
 contract = 0
-con0 = 450
-con1 = 350
-con2 = 250
-con3 = 150
+con0 = 400
+con1 = 300
+con2 = 200
+con3 = 100
 router = 0
 router1 = 100
 tax = 0
@@ -24,24 +24,23 @@ year = time.year
 
 while choice == 'y' do
 	
-  month0 = time.month
+  month = time.month 
 
-  if month0 == 2 && (year%4==0 && year%100!=0 || year%400==0) 
-     month1 = 29
-  elsif month0 == 2 && year%4!=0
-     month1 = 28
-  elsif month0 == 4 || month0 == 6  || month0 == 9 || month0 == 11
-     month1 == 30
-  else
-     month1 == 31
+  if month == 2 && (year%4==0 && year%100!=0 || year%400==0) 
+     daysInMonth = 29
+  elsif month == 2 && year%4!=0
+     daysInMonth = 28
+  elsif month == 4 || month == 6  || month == 9 || month == 11
+     daysInMonth = 30
+  elsif month == 1 || month == 3 || month == 5 || month ==7 || month == 8 || month == 10 || month == 12
+     daysInMonth = 31
   end
 
-  month2 = time.day
-
-  month3 = month1 - month2.to_i
+  dayOfMonth = time.day
+  daysLeftInMonth = daysInMonth - dayOfMonth 
  
   puts ""
-  puts "It is the #{month2} There are #{month3} days out of #{month1} days left in the month"
+  puts "It is the #{dayOfMonth} There are #{daysLeftInMonth} days out of #{daysInMonth} days left in the month"
   puts ""
 
   puts "Are you charging for cable?(1 or 2)" 
@@ -93,23 +92,37 @@ while choice == 'y' do
     concost = con3
   end
 
-  prorate = (packagerate/month1)*month3.to_f
-
-  subtotal = prorate + router1 + concost + cable.to_i
+  puts ""
+  puts ""
+  puts "PackageRate: #{packagerate}"
+  puts "PackageRateType: #{packagerate.class}"
+  puts "DayOfMonth: #{dayOfMonth}"
+  puts "DayOfMonthType: #{dayOfMonth.class}"
+  puts "DaysInMonth: #{daysInMonth}"
+  puts "DaysInMOnthType: #{daysInMonth.class}"
+  puts ""
+  puts ""
   
-  tax = subtotal * 0.05
+  prorate = packagerate*(daysLeftInMonth.to_f/daysInMonth.to_f) 
 
-  total = subtotal + tax
+  puts "PRORRRRAAATTTEEE #{prorate}"
+
+  subtotal = prorate.to_f + router1.to_f + concost.to_f + cable.to_f
+  
+  tax = subtotal.to_f * 0.05
+
+  total = subtotal.to_f + tax.to_f
    
   puts ""
-  print "prorate = "
-  puts sprintf( "$%.02f" , prorate)
   puts "router1 = #{router1}"
   puts "packagerate = #{packagerate}"
   puts "cable = #{cable}"
-  puts "days left: #{month3}"
+  puts "days left: #{daysLeftInMonth}"
   puts "Contract cost = #{concost}"
   puts ""
+  
+  print "prorate = "
+  puts sprintf( "$%.02f" , prorate)
   print "Subtotal = " 
   puts sprintf( "$%.02f" , subtotal )
   print "Tax = "
