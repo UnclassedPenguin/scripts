@@ -49,7 +49,7 @@ If you have any issues just delete the new files and rename the files with .old 
 
 ## PasswordCheck
 
-This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected. For more information watch this [video](https://www.youtube.com/watch?v=hhUb5iknVJs).
+This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected. For more information [read this blog post](https://unclassed.ca/2021/11/27/simple-password-check/) or [watch this video](https://www.youtube.com/watch?v=hhUb5iknVJs).
 
 Usage:
 
