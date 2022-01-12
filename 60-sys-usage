@@ -39,7 +39,7 @@ try:
                     swapavail = line2[1]
 
             swapusage = int(swapused)/int(swapavail)*100
-            print("  Swap usage        : %" + str(round(swapusage, 1)))
+            print("  Swap usage        : " + str(round(swapusage, 1)) + "%")
         except:
             print("  Swap usage        : No swap found")
 
@@ -54,7 +54,7 @@ try:
 
         memusage = int(memused)/int(memavail)*100
         
-        print("  Memory Usage      : %" + str(round(memusage, 1)))
+        print("  Memory Usage      : " + str(round(memusage, 1)) + "%")
     
     # Displays number of users logged in
     def readusers():
