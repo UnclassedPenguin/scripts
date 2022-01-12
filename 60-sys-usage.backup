@@ -5,18 +5,14 @@ import datetime
 
 date = datetime.datetime.now()
 
-#Edit this line with the interface you want to show ip address.
-interface='wlp5s0b1'
-
 try:
-    # These are the commands ran to find the different info
     cpucmd = "cat /proc/loadavg"
     swapcmd = "free -m"
     memcmd = "free -m"
     usercmd = "users"
-    diskcmd = "df -h"
+    diskcmd = "df -h > /tmp/tmp-disk-check"
     proccmd = "ps aux"
-    ipcmd = "ip addr show {}".format(interface)
+    ipcmd = "ip addr show enp2s0"
 
     print('\n')
     print('  System information as of ' + date.strftime("%c"))
@@ -28,22 +24,17 @@ try:
         cpuinfolist = cpuinfo[0].split()
         print("  System load       : " + cpuinfolist[0])
 
-    # Checks if there is swap and displays usage
     def readswap():
-        try:
-            swapinfo = os.popen(swapcmd).readlines()
-            for line in swapinfo:
-                line2=line.split()
-                if line2[0] == "Swap:":
-                    swapused = line2[2]
-                    swapavail = line2[1]
+        swapinfo = os.popen(swapcmd).readlines()
+        for line in swapinfo:
+            line2=line.split()
+            if line2[0] == "Swap:":
+                swapused = line2[2]
+                swapavail = line2[1]
 
-            swapusage = int(swapused)/int(swapavail)*100
-            print("  Swap usage        : %" + str(round(swapusage, 1)))
-        except:
-            print("  Swap usage        : No swap found")
+        swapusage = int(swapused)/int(swapavail)*100
+        print("  Swap usage        : %" + str(round(swapusage, 1)))
 
-    # Calculates mem usage and displays as a percentage
     def readmem():
         meminfo = os.popen(memcmd).readlines()
         for line in meminfo:
@@ -56,34 +47,34 @@ try:
         
         print("  Memory Usage      : %" + str(round(memusage, 1)))
     
-    # Displays number of users logged in
     def readusers():
         userinfo = os.popen(usercmd).readlines()
         print("  Users logged in   : " + str(len(userinfo)))
 
-    # Calculates disk usage for /
+    # Calculates disk usage 
     def readdisk():
-        diskinfo = os.popen(diskcmd).readlines()
+        os.system(diskcmd)
 
-        for line in diskinfo:
-            line2=line.split()
-            if line2[5] == "/":
-                print("  Usage of " + line2[5] + "        : " + line2[2] + "(" + line2[4] + ") of " + line2[1])
-                break
+        path = '/tmp/tmp-disk-check'
 
-    # Displays number of processes running on system
+        tmpfile = open(path, 'r')
+
+        for line in tmpfile:
+            line=line.split(' ')
+            if line[0] == '/dev/sda2':
+                rootline = [x for x in line if x] 
+        print("  Usage of " + rootline[5][:-1] + "        : " + rootline[2] + "(" + rootline[4] + ") of " + rootline[1])
+
     def readproc():
         procinfo = os.popen(proccmd).readlines()
         print("  Processes         : " + str(len(procinfo)))
 
-    # Displays IP for interface set at top as "interface"
     def readip():
         ipinfo = os.popen(ipcmd).readlines()
         for line in ipinfo:
             line2 = line.split()
             if line2[0] == 'inet':
                 ip = line2[1]
-                break
         print("  IP Address        : " + ip)
     
     def extra():
@@ -93,7 +84,6 @@ except:
 
 
 def main():
-    #Main program start
     readcpu()
     readmem()
     readswap()
