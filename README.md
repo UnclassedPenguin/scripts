@@ -29,7 +29,7 @@ port=12345
 **Use at your own risk. This is an old program, not maintained, might be smart to check that the files it is going to edit are actually on your system**
 
 This is a program that changes the color of the ubuntu splash screens as you boot up your computer running ubuntu.
-I have an article [here](https://blog.unclassed.ca/change-ubuntu-color-manually/) that explains how to manually do these changes. This is just an automation of that process.
+I have an article [here](https://unclassed.ca/2019/change-ubuntu-color-manually/) that explains how to manually do these changes. This is just an automation of that process.
 
 
 - Save file.
@@ -49,7 +49,7 @@ If you have any issues just delete the new files and rename the files with .old 
 
 ## PasswordCheck
 
-This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected. For more information [read this blog post](https://unclassed.ca/2021/11/27/simple-password-check/) or [watch this video](https://www.youtube.com/watch?v=hhUb5iknVJs).
+This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected. For more information [read this blog post](https://unclassed.ca/2021/simple-password-check/) or [watch this video](https://www.youtube.com/watch?v=hhUb5iknVJs).
 
 Usage:
 
