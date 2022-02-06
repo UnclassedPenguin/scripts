@@ -5,6 +5,7 @@ A random collection of useful scripts
 2. [UbuntuSplashColor.py](#UbuntuSplashColor)
 3. [Password Check](#PasswordCheck)
 4. [Rich Password Check](#RichPasswordCheck)
+5. [Auto Minecraft Backup](#AutoMinecraftBackup)
 ## easyssh
 
 - Clone the repository, or download just easyssh  
@@ -67,3 +68,7 @@ It will ask for your password, type it in and it will check. Will either output 
 ## RichPasswordCheck
 
 This is the same as Password check but just made to look a little bit different using the [rich](https://github.com/willmcgugan/rich) python module. I was just messing around with it. 
+
+## AutoMinecraftBackup  
+
+This is a script I use on my minecraft server to automatically back up. have it run daily with cron. 
