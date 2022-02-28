@@ -27,6 +27,7 @@ port=12345
 
 ## UbuntuSplashColor
 
+**This was written for ubuntu 18.04. Doesn't seem the files exist in 20.04. So basically useless now, but I'll leave it for now.**
 **Use at your own risk. This is an old program, not maintained, might be smart to check that the files it is going to edit are actually on your system**
 
 This is a program that changes the color of the ubuntu splash screens as you boot up your computer running ubuntu.
