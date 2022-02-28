@@ -54,7 +54,9 @@ class Passwd():
             splitNum = foundPassword.split(':')
             commaNum = '{:,}'.format(int(splitNum[1]))
             print("\n")
-            print("Password has been found {} times! -- {}".format(commaNum, foundPassword))
+            print("Password has been found {} times!".format(commaNum))
+            print("\n")
+            print(foundPassword)
         elif isFound == False:
             print("\n")
             print("Password was not found. Nice!")

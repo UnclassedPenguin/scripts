@@ -47,7 +47,7 @@ class Passwd():
         
         with Status("[blue]Checking Passwords...") as status:
             status.update(spinner="aesthetic")
-            sleep(3)
+            sleep(2)
             for line in hashesOrganized:
                 if line[0:35].lower() == lastBits:
                     isFound = True
@@ -58,7 +58,8 @@ class Passwd():
             splitNum = foundPassword.split(':')
             commaNum = '{:,}'.format(int(splitNum[1]))    
             print("\n")
-            console.print("[bold blue]Password has been found [bold red]{}[/] times! [bold white]-- {}".format(commaNum, foundPassword))
+            console.print("[bold blue]Password has been found [bold red]{}[/] times!".format(commaNum))
+            console.print("[bold white]{}".format(foundPassword))
         elif isFound == False:
             print("\n")
             console.print("[bold blue]Password was not found. Nice!")
