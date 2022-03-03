@@ -22,7 +22,7 @@ class Passwd():
         hashedPass = hashPass.hexdigest() 
         firstFive = hashedPass[0:5]
         lastBits = hashedPass[5:]
-        return firstFive, lastBits
+        return firstFive, lastBits, password
 
     # Strips the first five characters and passes it to the HaveIBeenPwned API
 
@@ -30,10 +30,11 @@ class Passwd():
         splitHash = self.hashPass()
         firstFive = splitHash[0]
         lastBits = splitHash[1]
+        password = splitHash[2]
         url = "https://api.pwnedpasswords.com/range/{}".format(firstFive)
         response = requests.get(url)
         dataReturned = response.text
-        return lastBits, dataReturned
+        return lastBits, dataReturned, password
 
     # Compares the rest of the hash against the returned data to see if it was found
 
@@ -42,6 +43,7 @@ class Passwd():
         dataReturned = self.apiRequest()
         lastBits = dataReturned[0]
         hashes = dataReturned[1]
+        password = dataReturned[2]
         hashesOrganized = hashes.split()       
         
         for line in hashesOrganized:
@@ -54,7 +56,7 @@ class Passwd():
             splitNum = foundPassword.split(':')
             commaNum = '{:,}'.format(int(splitNum[1]))
             print("\n")
-            print("Password has been found {} times!".format(commaNum))
+            print("Password '{}' has been found {} times!".format(password,commaNum))
             print("\n")
             print(foundPassword)
         elif isFound == False:
@@ -63,20 +65,14 @@ class Passwd():
 
 def main():
     try:
+        print("Ctrl-c to quit")
+        print("----------------------------------------------")
         run = True
         while run == True: 
             passwd = Passwd()
             passwd.checkPassword()
-            print("\n")
-            runInput = input("Would you like to check another password? (Y or n) ")
-            print("\n")
-            
-            if runInput.lower() == 'y' or runInput.lower() == 'yes':
-                run = True
-            elif runInput.lower() == 'n' or runInput.lower() == 'no':
-                run = False
-                print("Thanks for using UnclassedPenguin Password Checker!")
-                print("\n")
+            print("----------------------------------------------")
+
     except KeyboardInterrupt:
         print("\n")
         print("Thanks for using UnclassedPenguin Password Checker!")
