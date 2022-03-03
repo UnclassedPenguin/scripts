@@ -4,8 +4,9 @@ A random collection of useful scripts
 1. [easyssh](#easyssh)
 2. [UbuntuSplashColor.py](#UbuntuSplashColor)
 3. [Password Check](#PasswordCheck)
-4. [Rich Password Check](#RichPasswordCheck)
-5. [Auto Minecraft Backup](#AutoMinecraftBackup)
+4. [Password Check Private](#PasswordCheckPrivate)
+5. [Rich Password Check](#RichPasswordCheck)
+6. [Auto Minecraft Backup](#AutoMinecraftBackup)
 ## easyssh
 
 - Clone the repository, or download just easyssh  
@@ -65,6 +66,10 @@ $ python3 passwordcheck.py
 It will ask for your password, type it in and it will check. Will either output that it found it or it didn't.
 
 **Be careful using any program like this that you find on the internet. I am not collecting anything, you can read the code, but people with bad intent could. Make sure you understand what this program is doing.**
+
+## PasswordCheckPrivate
+
+Pretty much the same as password check, but it uses stdiomask module (a requirement) to mask the input of your password to asterisks. Slightly more private maybe, but the same functionality. Oddly enough, you can't exit the program with ctrl-c when it is prompting for a password so I made it quit on entering the password 'exit'.  
 
 ## RichPasswordCheck
 
