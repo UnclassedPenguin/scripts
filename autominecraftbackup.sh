@@ -53,7 +53,7 @@ else
     deleteoldbackups
     startserver 1 
   }
-  warn $"Backup of minecraft succesful"
+  warn $"Backup of minecraft successful"
   deleteoldbackups
   startserver 0
 fi
