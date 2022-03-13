@@ -64,20 +64,32 @@ def checkPassword():
             foundPassword = line
             break
 
-    if isFound == True:
+    if password == "exit":
         splitNum = foundPassword.split(':')
         commaNum = '{:,}'.format(int(splitNum[1]))
         print("\n")
-        print("Password '{}' has been found {} times!".format(password,commaNum))
+        print("Password 'exit' has been found {} times!".format(commaNum))
         print("\n")
         print(foundPassword)
-    elif isFound == False:
         print("\n")
-        print("Password was not found. Nice!")
+        print("Thanks for using UnclassedPenguin Password Checker!")
+        exit()
+
+    else:
+        if isFound == True:
+            splitNum = foundPassword.split(':')
+            commaNum = '{:,}'.format(int(splitNum[1]))
+            print("\n")
+            print("Password '{}' has been found {} times!".format(password,commaNum))
+            print("\n")
+            print(foundPassword)
+        elif isFound == False:
+            print("\n")
+            print("Password was not found. Nice!")
 
 def main():
     try:
-        print("Ctrl-c to quit")
+        print("Ctrl-c to quit or enter 'exit'")
         print("----------------------------------------------")
         run = True
         while run == True: 
