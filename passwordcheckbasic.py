@@ -13,29 +13,7 @@
 
 import hashlib
 import requests
-import sys, time, threading
-from threading import Thread
 
-class ThreadWithReturnValue(Thread):
-    def __init__(self, group=None, target=None, name=None,
-                 args=(), kwargs={}, Verbose=None):
-        Thread.__init__(self, group, target, name, args, kwargs)
-        self._return = None
-    def run(self):
-        if self._target is not None:
-            self._return = self._target(*self._args,
-                                                **self._kwargs)
-    def join(self, *args):
-        Thread.join(self, *args)
-        return self._return
-
-
-def animated_loading():
-    chars = "/—\|" 
-    for char in chars:
-        sys.stdout.write('\r'+'Contacting API...'+char)
-        time.sleep(.1)
-        sys.stdout.flush() 
     
 # Get User input
 
@@ -50,7 +28,8 @@ def getPass():
 
 # Takes the password and hashes it to SHA-1    
 
-def hashPass(password):
+def hashPass():
+    password = getPass()
     hashPass = hashlib.sha1(str(password).encode('utf-8'))
     hashedPass = hashPass.hexdigest() 
     firstFive = hashedPass[0:5]
@@ -59,7 +38,11 @@ def hashPass(password):
 
 # Strips the first five characters and passes it to the HaveIBeenPwned API
 
-def apiRequest(firstFive, lastBits, password):
+def apiRequest():
+    splitHash = hashPass()
+    firstFive = splitHash[0]
+    lastBits = splitHash[1]
+    password = splitHash[2]
     url = "https://api.pwnedpasswords.com/range/{}".format(firstFive)
     response = requests.get(url)
     dataReturned = response.text
@@ -67,8 +50,12 @@ def apiRequest(firstFive, lastBits, password):
 
 # Compares the rest of the hash against the returned data to see if it was found
 
-def checkPassword(lastBits, hashes, password):
+def checkPassword():
     isFound = False 
+    dataReturned = apiRequest()
+    lastBits = dataReturned[0]
+    hashes = dataReturned[1]
+    password = dataReturned[2]
     hashesOrganized = hashes.split()       
     
     for line in hashesOrganized:
@@ -106,17 +93,7 @@ def main():
         print("----------------------------------------------")
         run = True
         while run == True: 
-            password = getPass()
-            hashpass = hashPass(password)
-            # apirequest = threading.Thread(name='process', target=apiRequest, args=(hashpass[0], hashpass[1], hashpass[2]))
-            apirequest = ThreadWithReturnValue(target=apiRequest, args=(hashpass[0], hashpass[1], hashpass[2]))
-            apirequest.start()
-            while apirequest.is_alive():
-                animated_loading()
-            returnvalue = apirequest.join()
-            checkPassword(returnvalue[0], returnvalue[1], returnvalue[2])
-
-
+            checkPassword()
             print("----------------------------------------------")
 
     except KeyboardInterrupt:
