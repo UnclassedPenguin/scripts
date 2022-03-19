@@ -33,7 +33,7 @@ class ThreadWithReturnValue(Thread):
 def animated_loading():
     chars = "/—\|" 
     for char in chars:
-        sys.stdout.write('\r'+'Contacting API...'+char)
+        sys.stdout.write('\r'+'Contacting HaveIBeenPwned API...'+char)
         time.sleep(.1)
         sys.stdout.flush() 
     
