@@ -5,6 +5,7 @@ A random collection of useful scripts
 2. [UbuntuSplashColor.py](#UbuntuSplashColor)
 3. [Password Check](#PasswordCheck)
 4. [Password Check Private](#PasswordCheckPrivate)
+4. [Password Check File](#PasswordCheckFile)
 5. [Rich Password Check](#RichPasswordCheck)
 6. [Auto Minecraft Backup](#AutoMinecraftBackup)
 ## easyssh
@@ -70,6 +71,23 @@ It will ask for your password, type it in and it will check. Will either output 
 ## PasswordCheckPrivate
 
 Pretty much the same as password check, but it uses stdiomask module (a requirement) to mask the input of your password to asterisks. Slightly more private maybe, but the same functionality. Oddly enough, you can't exit the program with ctrl-c when it is prompting for a password so I made it quit on entering the password 'exit'.  
+
+## PasswordCheckFile
+Pretty much the same as password check, but you have to pass it a text file with a list of words in it, and it will go through the list line by line and check each password. At the end it will print them out from most to least used, and also give you the Most used password and the least used password from your list. It checks the list based on new lines, so create a file called pass.txt and fill it like:  
+  
+word1
+word2
+word3
+password
+thing
+another
+one  
+
+then execute it like:  
+
+```
+$ python3 passwordcheckfile.py pass.txt
+```
 
 ## RichPasswordCheck
 
