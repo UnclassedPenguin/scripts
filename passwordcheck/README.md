@@ -1,6 +1,8 @@
 ## Password Check
 Multiple versions of the same program for fun :)  
 
+For more information [read this blog post](https://unclassed.ca/2021/simple-password-check/) or [watch this video](https://www.youtube.com/watch?v=hhUb5iknVJs).
+
 1. [Password Check](#PasswordCheck)
 2. [Password Check Basic](#PasswordCheckBasic)
 4. [Password Check File](#PasswordCheckFile)
@@ -12,8 +14,6 @@ Multiple versions of the same program for fun :)
 This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected.  
 
 It uses Threading to show a spinner while it is looking up the password.  
-
-For more information [read this blog post](https://unclassed.ca/2021/simple-password-check/) or [watch this video](https://www.youtube.com/watch?v=hhUb5iknVJs).
 
 Usage:
 
