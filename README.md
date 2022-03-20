@@ -4,10 +4,11 @@ A random collection of useful scripts
 1. [easyssh](#easyssh)
 2. [UbuntuSplashColor.py](#UbuntuSplashColor)
 3. [Password Check](#PasswordCheck)
-4. [Password Check Private](#PasswordCheckPrivate)
-4. [Password Check File](#PasswordCheckFile)
-5. [Rich Password Check](#RichPasswordCheck)
-6. [Auto Minecraft Backup](#AutoMinecraftBackup)
+4. [Password Check Basic](#PasswordCheckBasic)
+5. [Password Check Private](#PasswordCheckPrivate)
+6. [Password Check File](#PasswordCheckFile)
+7. [Rich Password Check](#RichPasswordCheck)
+8. [Auto Minecraft Backup](#AutoMinecraftBackup)
 ## easyssh
 
 - Clone the repository, or download just easyssh  
@@ -53,7 +54,9 @@ If you have any issues just delete the new files and rename the files with .old 
 
 ## PasswordCheck
 
-This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected. For more information [read this blog post](https://unclassed.ca/2021/simple-password-check/) or [watch this video](https://www.youtube.com/watch?v=hhUb5iknVJs).
+This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected.  
+It uses Threading to show a spinner while it is looking up the password.  
+For more information [read this blog post](https://unclassed.ca/2021/simple-password-check/) or [watch this video](https://www.youtube.com/watch?v=hhUb5iknVJs).
 
 Usage:
 
@@ -67,6 +70,11 @@ $ python3 passwordcheck.py
 It will ask for your password, type it in and it will check. Will either output that it found it or it didn't.
 
 **Be careful using any program like this that you find on the internet. I am not collecting anything, you can read the code, but people with bad intent could. Make sure you understand what this program is doing.**
+
+## PasswordCheckBasic  
+
+Pretty much the same as password check, but even more basic. Uses the least requirements. Nothing fancy at all.   
+
 
 ## PasswordCheckPrivate
 
