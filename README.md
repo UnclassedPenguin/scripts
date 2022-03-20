@@ -55,7 +55,9 @@ If you have any issues just delete the new files and rename the files with .old 
 ## PasswordCheck
 
 This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected.  
+
 It uses Threading to show a spinner while it is looking up the password.  
+
 For more information [read this blog post](https://unclassed.ca/2021/simple-password-check/) or [watch this video](https://www.youtube.com/watch?v=hhUb5iknVJs).
 
 Usage:
