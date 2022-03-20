@@ -75,13 +75,13 @@ Pretty much the same as password check, but it uses stdiomask module (a requirem
 ## PasswordCheckFile
 Pretty much the same as password check, but you have to pass it a text file with a list of words in it, and it will go through the list line by line and check each password. At the end it will print them out from most to least used, and also give you the Most used password and the least used password from your list. It checks the list based on new lines, so create a file called pass.txt and fill it like:  
   
-word1
-word2
-word3
-password
-thing
-another
-one  
+word1  
+word2  
+word3  
+password  
+thing  
+another  
+one    
 
 then execute it like:  
 
