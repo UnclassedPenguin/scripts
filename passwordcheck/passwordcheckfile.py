@@ -158,6 +158,7 @@ def printDict(sortedDict):
 
 
 def main():
+
     try:
         getfile = getFile()
         filename = getfile[0]
@@ -166,11 +167,6 @@ def main():
         passwordDict = getNumbers(lines)
         sortedDict = sortDict(passwordDict)
         printDict(sortedDict)
-
-        
-
-
-
 
     except KeyboardInterrupt:
         print("\n")
