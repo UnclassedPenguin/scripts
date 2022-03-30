@@ -1,3 +1,17 @@
+#!/usr/bin/env python3
+
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+#
+# Tyler(UnclassedPenguin) Password Check (Rich) 2022
+#
+# Author: Tyler(UnclassedPenguin)
+#    URL: https://unclassed.ca
+# GitHub: https://github.com/UnclassedPenguin
+#
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+
 import hashlib
 import requests
 from rich.status import Status

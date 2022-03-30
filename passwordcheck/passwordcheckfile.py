@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 #
-# Tyler(UnclassedPenguin) Password Check 2022
+# Tyler(UnclassedPenguin) Password Check (File) 2022
 #
 # Author: Tyler(UnclassedPenguin)
 #    URL: https://unclassed.ca
