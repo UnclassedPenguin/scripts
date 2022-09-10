@@ -1,0 +1,105 @@
+#!/usr/bin/python3
+
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+#  
+# Tyler(UnclassedPenguin) Simple Timer 2022
+#  
+# Author: Tyler(UnclassedPenguin)
+#    URL: https://unclassed.ca
+# GitHub: https://github.com/UnclassedPenguin/scripts/
+#
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+
+import argparse
+import time
+from time import sleep
+import os
+
+
+arg_desc = 'A simple timer.'
+
+parser = argparse.ArgumentParser(description=arg_desc)
+
+parser.add_argument("-m", "--more", action="store_true", help="Slightly more information")
+parser.add_argument("-t", "--time", help="Set a time to send a notification, in seconds.")
+parser.add_argument("-c", "--command", help="Command to run when timer hit, requires -t")
+
+args = parser.parse_args()
+
+def getTime():
+    currentTime = time.strftime("%H:%M:%S")
+    return currentTime
+
+if  args.more:
+
+    if args.time:
+        time_amount = args.time
+    else:
+        time_amount = 0
+
+    if args.command and args.time == None:
+        print("Command requires a time amount! Try again using -t")
+        quit()
+
+    print("Start Time: " + getTime())
+
+    count=1
+    print(count)
+
+    while True:
+      
+      try:
+        count = count+1
+        sleep(1)
+        LINE_FLUSH = '\r\033[K'
+        UP_FRONT_LINE = '\033[F'
+        print(UP_FRONT_LINE + LINE_FLUSH + str(count))
+        if count == int(time_amount):
+            if args.command:
+                os.system("notify-send -t 10000 'Timer' 'Time limit reached! Executing: " + args.command + "'")
+                os.system(args.command)
+            else:
+                os.system("notify-send -t 10000 'Timer' 'Time limit reached!'")
+            break
+
+      except KeyboardInterrupt:
+          print("\n")
+          print("End Time: " + getTime())
+          print("Thanks for using timer :)")
+          break
+
+else: 
+
+    if args.time:
+        time_amount = args.time
+    else:
+        time_amount = 0
+
+    if args.command and args.time == None:
+        print("Command requires a time amount! Try again using -t")
+        quit()
+
+    count=1
+    print(count)
+    while True:
+      
+      try:
+        count = count+1
+        sleep(1)
+        LINE_FLUSH = '\r\033[K'
+        UP_FRONT_LINE = '\033[F'
+        print(UP_FRONT_LINE + LINE_FLUSH + str(count))
+        if count == int(time_amount):
+            if args.command:
+                os.system("notify-send -t 10000 'Timer' 'Time limit reached! Executing: " + args.command + "'")
+                os.system(args.command)
+            else:
+                os.system("notify-send -t 10000 'Timer' 'Time limit reached!'")
+            break
+
+      except KeyboardInterrupt:
+          print("\n")
+          print("Thanks for using timer :)")
+          break
