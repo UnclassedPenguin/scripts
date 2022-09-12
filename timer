@@ -5,16 +5,19 @@
 #
 # Tyler(UnclassedPenguin) Simple Timer 2022
 #
-# Author: Tyler(UnclassedPenguin)
-#    URL: https://unclassed.ca
-# GitHub: https://github.com/UnclassedPenguin/scripts/
+#      Author: Tyler(UnclassedPenguin)
+#         URL: https://unclassed.ca
+#      GitHub: https://github.com/UnclassedPenguin/scripts/
+# Description: I just wanted a simple timer that I could use if I needed
+#              to keep track of some time. I'm sure this exists, but it
+#              was easy enough to write on my own. I'll add more features
+#              as I feel like it.
 #
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 
 import argparse
 import time
-from time import sleep
 import os
 
 # Arguments section
@@ -22,18 +25,16 @@ arg_desc = 'A simple timer.'
 
 parser = argparse.ArgumentParser(description=arg_desc)
 
-parser.add_argument("-m", "--more", action="store_true", help="Slightly more            information")
+parser.add_argument("-v", "--verbose", action="store_true", help="Slightly more information")
 parser.add_argument("-t", "--time", help="Set a time to send a notification, in seconds.")
 parser.add_argument("-c", "--command", help="Command to run when timer hit, requires -  t")
 
 args = parser.parse_args()
 
-
 # Returns current time
 def getTime():
     currentTime = time.strftime("%H:%M:%S")
     return currentTime
-
 
 # Runs if -t is set, sets time_amount to number of seconds specified
 if args.time:
@@ -42,28 +43,25 @@ if args.time:
 else:
     time_amount = 0
 
-
 # Catches if -c/--command is used but there is no time set and exits program
 if args.command and args.time == None:
     print("Command requires a time amount! Try again using -t")
+    print("Or -h for help")
     quit()
 
-
 # Prints start time if -m is set
-if args.more:
+if args.verbose:
     print("Start Time: " + getTime())
-
 
 # Sets timer start number
 count=1
 print(count)
 
-
 # Main loop where it counts up in 1 second intervals
 while True:
     try:
         count = count+1
-        sleep(1)
+        time.sleep(1)
 
         # Next couple lines are what clears the line and reprints
         LINE_FLUSH = '\r\033[K'
@@ -72,22 +70,21 @@ while True:
 
         # Executes when count reaches time_amount
         if count == int(time_amount):
-
             if args.command:
                 # Sends a desktop notification when time_amount reached. Shows what     command was executed
-                os.system("notify-send -t 10000 'Timer' 'Time limit reached! Executing: " + args.command + "'")
+                os.system("notify-send -t 10000 'Timer' 'Time limit of " + args.time + " seconds reached! Executing: " + args.command + "'")
                 # Executes command specified by -c/--command
                 os.system(args.command)
             else:
                 # Shows notification when timer reached if no command was specified
-                os.system("notify-send -t 10000 'Timer' 'Time limit reached!'")
+                os.system("notify-send -t 10000 'Timer' 'Time limit of " + args.time + " seconds reached!'")
+            print("Thanks for using timer :)")
             break
-
 
     # Handles if ctrl-c pressed
     except KeyboardInterrupt:
         print("\n")
-        if args.more:
+        if args.verbose:
             print("End Time: " + getTime())
         print("Thanks for using timer :)")
         break
