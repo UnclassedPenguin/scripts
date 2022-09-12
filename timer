@@ -28,6 +28,7 @@ parser.add_argument("-c", "--command", help="Command to run when timer hit, requ
 
 args = parser.parse_args()
 
+
 # Returns current time
 def getTime():
     currentTime = time.strftime("%H:%M:%S")
@@ -41,20 +42,24 @@ if args.time:
 else:
     time_amount = 0
 
+
 # Catches if -c/--command is used but there is no time set and exits program
 if args.command and args.time == None:
     print("Command requires a time amount! Try again using -t")
     quit()
 
+
 # Prints start time if -m is set
 if args.more:
     print("Start Time: " + getTime())
+
 
 # Sets timer start number
 count=1
 print(count)
 
-# Main loop where it counts
+
+# Main loop where it counts up in 1 second intervals
 while True:
     try:
         count = count+1
@@ -67,6 +72,7 @@ while True:
 
         # Executes when count reaches time_amount
         if count == int(time_amount):
+
             if args.command:
                 # Sends a desktop notification when time_amount reached. Shows what     command was executed
                 os.system("notify-send -t 10000 'Timer' 'Time limit reached! Executing: " + args.command + "'")
@@ -77,12 +83,11 @@ while True:
                 os.system("notify-send -t 10000 'Timer' 'Time limit reached!'")
             break
 
-      # Handles if ctrl-c pressed
+
+    # Handles if ctrl-c pressed
     except KeyboardInterrupt:
         print("\n")
         if args.more:
             print("End Time: " + getTime())
         print("Thanks for using timer :)")
         break
-
-
