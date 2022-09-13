@@ -4,6 +4,8 @@ A random collection of useful scripts
 1. [easyssh](#easyssh)
 2. [UbuntuSplashColor.py](#UbuntuSplashColor)
 3. [Auto Minecraft Backup](#AutoMinecraftBackup)
+4. [Timer](#Timer)
+5. [Binary Clock](#BinaryClock)
 ## easyssh
 
 - Clone the repository, or download just easyssh  
@@ -50,3 +52,11 @@ If you have any issues just delete the new files and rename the files with .old 
 ## AutoMinecraftBackup  
 
 This is a script I use on my minecraft server to automatically back up. have it run daily with cron. 
+
+## Timer
+
+I wanted a simple timer, so I wrote this one in python. All it does is count up in seconds. I've added some arguments to it...Might add some more.
+
+## BinaryClock
+
+I wanted to try writing a binary clock in python, this is what I came up with. I'm sure there is a more efficient way to do it.... Let me know!
