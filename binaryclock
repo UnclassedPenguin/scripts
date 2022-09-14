@@ -42,19 +42,11 @@ def main():
         hourOne = int(currentTime[0])
         hourTwo = int(currentTime[1])
 
-# binaryHourOne[7] == binaryTime[3][0]
-# binaryHourOne[6] == binaryTime[2][0]
         binaryHourOne = '{:08b}'.format(hourOne) 
-
         binaryTime[3][0] = binaryHourOne[7]
         binaryTime[2][0] = binaryHourOne[6]
 
-# binaryHourTwo[7] == binaryTime[3][1]
-# binaryHourTwo[6] == binaryTime[2][1]
-# binaryHourTwo[5] == binaryTime[1][1]
-# binaryHourTwo[4] == binaryTime[0][1]
         binaryHourTwo = '{:08b}'.format(hourTwo) 
-
         binaryTime[3][1] = binaryHourTwo[7]
         binaryTime[2][1] = binaryHourTwo[6]
         binaryTime[1][1] = binaryHourTwo[5]
@@ -72,21 +64,12 @@ def main():
         minuteOne = int(currentTime[3])
         minuteTwo = int(currentTime[4])
 
-# binaryMinuteOne[7] == binaryTime[3][2]
-# binaryMinuteOne[6] == binaryTime[2][2]
-# binaryMinuteOne[5] == binaryTime[1][2]
         binaryMinuteOne = '{:08b}'.format(minuteOne) 
-
         binaryTime[3][2] = binaryMinuteOne[7]
         binaryTime[2][2] = binaryMinuteOne[6]
         binaryTime[1][2] = binaryMinuteOne[5]
 
-# binaryMinuteTwo[7] == binaryTime[3][3]
-# binaryMinuteTwo[6] == binaryTime[2][3]
-# binaryMinuteTwo[5] == binaryTime[1][3]
-# binaryMinuteTwo[4] == binaryTime[0][3]
         binaryMinuteTwo = '{:08b}'.format(minuteTwo) 
-
         binaryTime[3][3] = binaryMinuteTwo[7]
         binaryTime[2][3] = binaryMinuteTwo[6]
         binaryTime[1][3] = binaryMinuteTwo[5]
@@ -104,21 +87,12 @@ def main():
         secondOne = int(currentTime[6])
         secondTwo = int(currentTime[7])
 
-# binarySecondOne[7] == binaryTime[3][4]
-# binarySecondOne[6] == binaryTime[2][4]
-# binarySecondOne[5] == binaryTime[1][4]
         binarySecondOne = '{:08b}'.format(secondOne) 
-
         binaryTime[3][4] = binarySecondOne[7]
         binaryTime[2][4] = binarySecondOne[6]
         binaryTime[1][4] = binarySecondOne[5]
 
-# binarySecondTwo[7] == binaryTime[3][5]
-# binarySecondTwo[6] == binaryTime[2][5]
-# binarySecondTwo[5] == binaryTime[1][5]
-# binarySecondTwo[4] == binaryTime[0][5]
         binarySecondTwo = '{:08b}'.format(secondTwo) 
-
         binaryTime[3][5] = binarySecondTwo[7]
         binaryTime[2][5] = binarySecondTwo[6]
         binaryTime[1][5] = binarySecondTwo[5]
