@@ -18,6 +18,10 @@ warn() {
     printf >&2 "$SCRIPTNAME: $*\n"  
 }  
 
+iscmd() {
+    command -v >&- "$@"
+}
+
 checkdeps() {
     local -i not_found
     for cmd; do
