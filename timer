@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ else:
 
 # Catches if -c/--command is used but there is no time set and exits program
 if args.command and args.time == None:
-    print("Command requires a time amount! Try again using -t")
+    print("The -c/--command option requires a -t/--time amount! Try again using -t")
     print("Or -h for help")
     quit()
 

@@ -1,0 +1,165 @@
+#!/usr/bin/python3
+
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+#
+# Tyler(UnclassedPenguin) Binary Clock 2022
+#
+#      Author: Tyler(UnclassedPenguin)
+#         URL: https://unclassed.ca
+#      GitHub: https://github.com/UnclassedPenguin/scripts/
+# Description: I just wanted a simple binary clock. 
+#
+# -------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+
+import os
+import time
+import timeit
+from datetime import datetime
+
+def printTime(listx):
+    for lists in listx:
+      for i in lists:
+         print(i,end=' ')
+      print()
+
+def main():
+    while True:
+        os.system("clear")
+        now = datetime.now()
+        currentTime = now.strftime("%H:%M:%S.%f")
+
+        binaryTime = [
+        [" ", "0", " ", "0", " ", "0", "0", "0"],
+        [" ", "0", "0", "0", "0", "0", "0", "0"],
+        ["0", "0", "0", "0", "0", "0", "0", "0"],
+        ["0", "0", "0", "0", "0", "0", "0", "0"],
+        ["-", "-", "-", "-", "-", "-", "-", "-"],
+        ["H", "H", "M", "M", "S", "S", "s", "s"]
+        ]
+
+#-----------------------------------------------------------
+# Hour Section
+#-----------------------------------------------------------
+
+        hourOne = int(currentTime[0])
+        hourTwo = int(currentTime[1])
+
+        binaryHourOne = '{:08b}'.format(hourOne) 
+        binaryTime[3][0] = binaryHourOne[7]
+        binaryTime[2][0] = binaryHourOne[6]
+
+        binaryHourTwo = '{:08b}'.format(hourTwo) 
+        binaryTime[3][1] = binaryHourTwo[7]
+        binaryTime[2][1] = binaryHourTwo[6]
+        binaryTime[1][1] = binaryHourTwo[5]
+        binaryTime[0][1] = binaryHourTwo[4]
+
+#-----------------------------------------------------------
+#-----------------------------------------------------------
+
+
+#-----------------------------------------------------------
+# Minute Section
+#-----------------------------------------------------------
+
+        minuteOne = int(currentTime[3])
+        minuteTwo = int(currentTime[4])
+
+        binaryMinuteOne = '{:08b}'.format(minuteOne) 
+        binaryTime[3][2] = binaryMinuteOne[7]
+        binaryTime[2][2] = binaryMinuteOne[6]
+        binaryTime[1][2] = binaryMinuteOne[5]
+
+        binaryMinuteTwo = '{:08b}'.format(minuteTwo) 
+        binaryTime[3][3] = binaryMinuteTwo[7]
+        binaryTime[2][3] = binaryMinuteTwo[6]
+        binaryTime[1][3] = binaryMinuteTwo[5]
+        binaryTime[0][3] = binaryMinuteTwo[4]
+
+#-----------------------------------------------------------
+#-----------------------------------------------------------
+
+
+#-----------------------------------------------------------
+# Second Section
+#-----------------------------------------------------------
+
+        secondOne = int(currentTime[6])
+        secondTwo = int(currentTime[7])
+
+        binarySecondOne = '{:08b}'.format(secondOne) 
+        binaryTime[3][4] = binarySecondOne[7]
+        binaryTime[2][4] = binarySecondOne[6]
+        binaryTime[1][4] = binarySecondOne[5]
+
+        binarySecondTwo = '{:08b}'.format(secondTwo) 
+        binaryTime[3][5] = binarySecondTwo[7]
+        binaryTime[2][5] = binarySecondTwo[6]
+        binaryTime[1][5] = binarySecondTwo[5]
+        binaryTime[0][5] = binarySecondTwo[4]
+
+#-----------------------------------------------------------
+#-----------------------------------------------------------
+
+
+#-----------------------------------------------------------
+# Microsecond Section
+#-----------------------------------------------------------
+
+        microSecondOne = int(currentTime[9])
+        microSecondTwo = int(currentTime[10])
+
+        binaryMicroSecondOne = '{:08b}'.format(microSecondOne)
+        binaryTime[3][6] = binaryMicroSecondOne[7]
+        binaryTime[2][6] = binaryMicroSecondOne[6]
+        binaryTime[1][6] = binaryMicroSecondOne[5]
+        binaryTime[0][6] = binaryMicroSecondOne[4]
+
+        binaryMicroSecondTwo = '{:08b}'.format(microSecondTwo)
+        binaryTime[3][7] = binaryMicroSecondTwo[7]
+        binaryTime[2][7] = binaryMicroSecondTwo[6]
+        binaryTime[1][7] = binaryMicroSecondTwo[5]
+        binaryTime[0][7] = binaryMicroSecondTwo[4]
+
+#-----------------------------------------------------------
+#-----------------------------------------------------------
+
+
+#-----------------------------------------------------------
+# Diagnostics
+#-----------------------------------------------------------
+
+        # print(currentTime)
+
+        # print("Hour = " + str(hour))
+        # print("Hour b1 = " + binaryHourOne)
+        # print("Hour b2 = " + binaryHourTwo)
+        # print("Hour1 = " + currentTime[0])
+        # print("Hour2 = " + currentTime[1])
+
+        # print("Minute = " + str(minute))
+        # print("Minute b1 = " + binaryMinuteOne)
+        # print("Minute b2 = " + binaryMinuteTwo)
+        # print("Minute1 = " + currentTime[3])
+        # print("Minute2 = " + currentTime[4])
+
+        # print("Second = " + str(second))
+        # print("Second b1 = " + binarySecondOne)
+        # print("Second b2 = " + binarySecondTwo)
+        # print("Seconds1 = " + currentTime[6])
+        # print("Seconds2 = " + currentTime[7])
+
+#-----------------------------------------------------------
+#-----------------------------------------------------------
+
+        printTime(binaryTime)
+        time.sleep(.05)
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('\n')
+        print('Thanks for using My Binary Clock :)')
