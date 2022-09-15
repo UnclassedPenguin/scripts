@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir thumbnails
+mogrify -verbose -path thumbnails -resize 20% ./*
+cd thumbnails
+cropimages

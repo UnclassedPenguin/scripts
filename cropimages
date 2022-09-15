@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+import os
+from PIL import Image
+
+def getImages():
+    files = os.listdir()
+    imglist = []
+    for item in files:
+        if item[-4:] == ".jpg" or item[-4:] == ".png":
+            imglist.append(item)
+    return imglist
+
+
+def cropImages():
+    images = getImages()
+    for image in images:
+        print("---------------------------------------------")
+        img = Image.open(image)
+        width, height = img.size
+        print("Image Name:", image)
+        print("Width:", width)
+        print("Height:", height)
+        print("Cropping...")
+        if width > height:
+            left = (width-height)/2
+            top = 0
+            right = width-((width-height)/2)
+            bottom = height 
+            imgCropped = img.crop((left,top,right,bottom))
+            newwidth, newheight = imgCropped.size
+            print("New width", newwidth)
+            print("New Height", newheight)
+            imgCropped.save(image)
+        elif height > width:
+            left = 0 
+            top = (height-width)/2 
+            right = width
+            bottom = height-((height-width)/2) 
+            imgCropped = img.crop((left,top,right,bottom))
+            newwidth, newheight = imgCropped.size
+            print("New width:", newwidth)
+            print("New Height:", newheight)
+            imgCropped.save(image)
+        else: 
+            print("Image is already square...")
+            continue
+
+def main():
+    path = os.getcwd()
+    print("\n")
+    print("Crop images (.jpg, .png) square?")
+    print("Current Directory:", path)
+    print("Do you want to continue? (y,n)")
+    cont = input("> ")
+    if cont == 'y':
+        cropImages()
+    else:
+        print("Thanks for playing!")
+
+if __name__ == '__main__':
+    main()
