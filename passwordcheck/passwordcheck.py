@@ -105,8 +105,7 @@ def main():
     try:
         print("Ctrl-c to quit or enter 'exit'")
         print("----------------------------------------------")
-        run = True
-        while run == True: 
+        while True: 
             password = getPass()
             hashpass = hashPass(password)
             apirequest = ThreadWithReturnValue(target=apiRequest, args=(hashpass[0], hashpass[1], hashpass[2]))
