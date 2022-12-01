@@ -9,6 +9,8 @@ For more information [read this blog post](https://unclassed.ca/2021/simple-pass
 3. [Password Check Private](#PasswordCheckPrivate)
 5. [Password Check Rich](#PasswordCheckRich)
 
+I also wrote a [go version](https://github.com/unclassedpenguin/passwordcheck) (because go is better than python :P)
+
 ## PasswordCheck
 
 This is my own version of a password checker which uses the HaveIBeenPwned API and checks if your password has been found in any online breaches that they have collected.  
