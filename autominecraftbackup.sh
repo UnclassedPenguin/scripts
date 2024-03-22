@@ -49,7 +49,7 @@ if [[ -f $date-minecraft.tar.gz ]]; then
   startserver 0
 else
   warn $"Backup not found, creating..."
-  tar czf $date-minecraft.tar.gz -C ~/minecraft/worlds/ ~/minecraft/server.properties ~/minecraft/whitelist.json . || {
+  tar czf $date-minecraft.tar.gz -C ~/minecraft/worlds/ ~/minecraft/server.properties ~/minecraft/allowlist.json . || {
     warn $"Something went wrong with minecraft backup..."
     deleteoldbackups
     startserver 1 
