@@ -37,7 +37,7 @@ startserver() {
 }
 
 warn $"Stopping minecraft server..."
-screen -S minecraft -X stuff 'stop'$'\n'
+screen -S minecraft -X stuff $' stop\n'
 sleep 30
 warn $"Done..."
 
