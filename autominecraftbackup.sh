@@ -40,14 +40,22 @@ warn $"Stopping minecraft server..."
 screen -S minecraft -X stuff $' stop\n'
 sleep 30
 
+# I tend to forget to exit copy mode after looking at the server.
+# So this will catch if you didn't exit copy mode in screen.
 if [[ $(pgrep bedrock_server) ]]; then
+  warn $"Server didn't shutdown..."
   warn $"Attempting to stop minecraft server again..."
   screen -S minecraft -X stuff $' stop\n'
   sleep 30
 fi
 
+# If for some reason both attempts to stop the server fail, it will
+# exit without backing up. I don't know how reliable backing up a 
+# running server is.
 if [[ $(pgrep bedrock_server) ]]; then
-  warn $"Server still running...exiting"
+  warn $"Server still running..."
+  warn $"No Backup created, check manually..."
+  warn $"Exiting..."
   exit 1
 else
   warn $"Server successfully shutdown..."
