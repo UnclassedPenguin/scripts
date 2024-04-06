@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+
+import os
+import datetime
+
+date = datetime.datetime.now()
+
+try:
+    versioncmd = "lsb_release -s -d"
+    kernelcmd = "uname -r"
+    cpucmd = "cat /proc/loadavg"
+    memcmd = "free -m"
+    usercmd = "users"
+    diskcmd = "df -h > /tmp/tmp-disk-check"
+    proccmd = "ps aux"
+    ipcmd = "ip addr show eth0"
+    uptimecmd = "uptime -p"
+
+    print('\n')
+    print('  System information as of ' + date.strftime("%c"))
+    print('\n')
+
+    #Get Ubuntu Version
+    def readversion():
+        versioninfo = os.popen(versioncmd).readlines()
+        versionline = versioninfo[0].strip('\n')
+        print("  Version           : " + versionline)
+
+    #Get kernel Version
+    def readkernel():
+        kernelinfo = os.popen(kernelcmd).readlines()
+        kernelline = kernelinfo[0].strip('\n')
+        print("  Kernel Version    : " + kernelline)
+
+    #Calculates cpu usage
+    def readcpu():
+        cpuinfo = os.popen(cpucmd).readlines()
+        cpuinfolist = cpuinfo[0].split()
+        print("  System load       : " + cpuinfolist[0])
+
+    def readmem():
+        meminfo = os.popen(memcmd).readlines()
+        for line in meminfo:
+            line2=line.split()
+            if line2[0] == "Mem:":
+                memused= line2[2]
+                memavail= line2[1]
+
+        memusage = int(memused)/int(memavail)*100
+
+        print("  Memory Usage      : %" + str(round(memusage,  1)))
+
+    def readusers():
+        userinfo = os.popen(usercmd).readlines()
+        print("  Users logged in   : " + str(len(userinfo)))
+
+    # Calculates disk usage 
+    def readdisk():
+        os.system(diskcmd)
+
+        path = '/tmp/tmp-disk-check'
+
+        tmpfile = open(path, 'r')
+
+        for line in tmpfile:
+            line=line.split(' ')
+            if line[0] == '/dev/vda1':
+                rootline = [x for x in line if x]
+        print("  Usage of " + rootline[5][:-1] + "        :    " + rootline[2] + "(" + rootline[4] + ") of " + rootline[1])
+
+    def readproc():
+        procinfo = os.popen(proccmd).readlines()
+        print("  Processes         : " + str(len(procinfo)))
+
+    def readip():
+        ipinfo = os.popen(ipcmd).readlines()
+        for line in ipinfo:
+            line2 = line.split()
+            if line2[0] == 'inet':
+                ip = line2[1]
+                break
+        print("  IP Address        : " + ip)
+
+    def readuptime():
+        uptimeinfo = os.popen(uptimecmd).readlines()
+        for line in uptimeinfo:
+            line2 = line.split()
+            linestring = ' '.join(line2[1:])
+            print("  Uptime            : " + linestring)
+
+    def extra():
+        print('\n')
+except:
+    print("Something didn't work! Please edit /etc/update-motd.d/60-sys-usage2")
+
+
+def main():
+    readversion()
+    readkernel()
+    readuptime()
+    readcpu()
+    readmem()
+    readusers()
+    readdisk()
+    readproc()
+    readip()
+    extra()
+
+if __name__ == '__main__':
+    main()
