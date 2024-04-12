@@ -31,7 +31,7 @@ deleteoldbackups() {
 # Requires exit code 0 or 1 as parameter
 startserver() {
   cd ~/minecraft/
-  screen -S minecraft -X stuff './start.sh'$'\n'
+  screen -S minecraft -X stuff $'./start.sh\n'
   warn $"Starting server and exiting..."
   exit $1
 }
@@ -49,12 +49,12 @@ COUNT=1
 while [ $COUNT -le $TRIES ]; do
   warn $"Stopping minecraft server..."
   warn $"Attempt ${COUNT}..."
-  screen -S minecraft -X stuff $' stop\n'
+  screen -S minecraft -X stuff $'stop\n'
   sleep 30
-  if [[ $(pgrep bedrock_server) ]]; then
+  if [[ $(pgrep bedrock_server) ]] && [ $COUNT -ne $TRIES ]; then
     warn $"Server didn't shutdown..."
     warn $"Attempting to stop minecraft server again..."
-  elif [[ $(pgrep bedrock_server) ]] && [ $COUNT -et $TRIES ]; then
+  elif [[ $(pgrep bedrock_server) ]] && [ $COUNT -eq $TRIES ]; then
     warn $"Server still running..."
     warn $"No Backup created, check manually..."
     warn $"Exiting..."
