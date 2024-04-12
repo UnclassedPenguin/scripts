@@ -44,7 +44,7 @@ startserver() {
 # running server is.
 
 TRIES=3
-COUNT=0
+COUNT=1
 
 while [ $COUNT -le $TRIES ]; do
   warn $"Stopping minecraft server..."
@@ -54,7 +54,7 @@ while [ $COUNT -le $TRIES ]; do
   if [[ $(pgrep bedrock_server) ]]; then
     warn $"Server didn't shutdown..."
     warn $"Attempting to stop minecraft server again..."
-  elif [[ $(pgrep bedrock_server) && ($COUNT -et $TRIES) ]]
+  elif [[ $(pgrep bedrock_server) ]] && [ $COUNT -et $TRIES ]; then
     warn $"Server still running..."
     warn $"No Backup created, check manually..."
     warn $"Exiting..."
@@ -62,6 +62,7 @@ while [ $COUNT -le $TRIES ]; do
   else
     break;
   fi
+  ((COUNT++))
 done
 
 warn $"Server successfully shutdown..."
