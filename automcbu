@@ -36,7 +36,6 @@ startserver() {
   exit $1
 }
 
-
 # I tend to forget to exit copy mode after looking at the server.
 # So this will catch if you didn't exit copy mode in screen.
 # If for some reason all attempts to stop the server fail, it will
