@@ -22,3 +22,32 @@ $ ssh-keygen -t ed25519
 setup ssh keys on servers (have fun...)
 setup .gitconfig (copy from another one, like hpdesktop)
 setup git
+
+
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+# Things to know about this pc
+# Author: Tyler(UnclassedPenguin)
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+Terminals = Gnome terminal, tilda(popup)
+
+1.
+-------------------------------------------------------------------------------
+l-ctrl and caps lock are switched.
+I edited the file /usr/share/X11/xkb/keycodes/evdv and swapped the number
+for CAPS and LCTL. swap back to get it to normal
+-------------------------------------------------------------------------------
+
+2.
+-------------------------------------------------------------------------------
+Change brightness (in i3) with:
+$ xrandr --output eDP-1 --brightness 0.5
+values between 0 and 1. dont do 0 though it goes pure black :p
+-------------------------------------------------------------------------------
+
