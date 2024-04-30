@@ -51,3 +51,6 @@ $ xrandr --output eDP-1 --brightness 0.5
 values between 0 and 1. dont do 0 though it goes pure black :p
 -------------------------------------------------------------------------------
 
+
+
+1d1f21
