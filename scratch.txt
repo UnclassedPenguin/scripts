@@ -1,0 +1,24 @@
+# add to xresources
+
+*dpi: 120
+Xft.dpi: 120
+
+
+
+
+sign into firefox
+change keyboard shortcuts
+$ sudo apt install vim git htop
+$ mkdir ~/git
+$ cd ~/git
+$ git clone https://github.com/unclassedpenguin/dotfiles
+$ cd dotfiles
+$ ./install.sh
+logout and back in
+$ mkdir ~/.ssh
+$ chmod 700 ~/.ssh
+$ cd ~/.ssh
+$ ssh-keygen -t ed25519
+setup ssh keys on servers (have fun...)
+setup .gitconfig (copy from another one, like hpdesktop)
+setup git
