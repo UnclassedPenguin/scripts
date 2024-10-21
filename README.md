@@ -4,8 +4,10 @@ A random collection of useful scripts
 1. [easyssh](#easyssh)
 2. [UbuntuSplashColor.py](#UbuntuSplashColor)
 3. [Auto Minecraft Backup](#AutoMinecraftBackup)
+6. [Upgrade Minecraft Server](#UpgradeMinecraftServer)
 4. [Timer](#Timer)
 5. [Binary Clock](#BinaryClock)
+
 ## easyssh
 
 - Clone the repository, or download just easyssh  
@@ -52,6 +54,12 @@ If you have any issues just delete the new files and rename the files with .old 
 ## AutoMinecraftBackup  
 
 This is a script I use on my minecraft server to automatically back up. have it run daily with cron. 
+
+## UpgradeMinecraftServer
+
+(ums)
+
+This script automatically updates my minecraft server. Just pass it the url of the new server download url. It is fairly specific to my use case, so make sure you read it before you try to use it. 
 
 ## Timer
 

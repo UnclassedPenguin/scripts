@@ -1,0 +1,153 @@
+#!/bin/bash
+
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# 
+# Tyler(UnclassedPenguin) Update Minecraft Server 2024
+# 
+# Author: Tyler(UnclassedPenguin)
+#    URL: https://unclassed.ca
+# GitHub: https://github.com/UnclassedPenguin
+#   
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+    
+    
+SCRIPTNAME="${0##*/}"
+  
+warn() {
+    printf >&2 "$SCRIPTNAME: $*\n"
+} 
+
+URLOFNEWSERVER="${1}"
+VERSIONNAME=${URLOFNEWSERVER##*/}
+warn $"Updating minecraft server..."
+
+# I tend to forget to exit copy mode after looking at the server.
+# So this will catch if you didn't exit copy mode in screen.
+# If for some reason all attempts to stop the server fail, it will
+# exit without backing up. I don't know how reliable backing up a
+# running server is.
+
+TRIES=3
+COUNT=1
+
+while [ $COUNT -le $TRIES ]; do
+  warn $"Stopping minecraft server..."
+  warn $"Attempt ${COUNT}..."
+  screen -S minecraft -X stuff $'stop\n'
+  sleep 30
+  if [[ $(pgrep bedrock_server) ]] && [ $COUNT -ne $TRIES ]; then
+    warn $"Server didn't shutdown..."
+    warn $"Attempting to stop minecraft server again..."
+  elif [[ $(pgrep bedrock_server) ]] && [ $COUNT -eq $TRIES ]; then
+    warn $"Server still running..."
+    warn $"Unable to update, check manually..."
+    warn $"Exiting..."
+    exit 1
+  else
+    break;
+  fi
+  ((COUNT++))
+done
+
+warn $"Server successfully shutdown..."
+
+warn $"Checking for old-minecraft..."
+
+cd /home/mineuser
+
+if [[ -d old-minecraft ]]; then
+  warn $"Deleting old-minecraft folder..."
+  rm -r old-minecraft || {
+    warn $"Failed to delete old-minecraft"
+    exit 1
+  }
+fi
+
+warn $"Moving current minecraft folder to old-minecraft..."
+
+mv minecraft old-minecraft || {
+  warn $"Failed to move minecraft to old-minecraft"
+  exit 1
+}
+
+warn $"Creating new minecraft folder..."
+
+mkdir minecraft || {
+  warn $"Failed to create minecraft folder"
+  exit 1
+}
+
+cd minecraft || {
+  warn $"Failed to move to new minecraft folder"
+  exit 1
+}
+
+warn $"Downloading ${VERSIONNAME}"
+
+wget -U "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; BEDROCK-UPDATER)" ${URLOFNEWSERVER} || {
+  warn $"Failed to download new server zip"
+  exit 1
+}
+
+warn $"Unzipping new server..."
+
+unzip -q ${VERSIONNAME} || {
+  warn $"Failed to unzip new server"
+  exit 1
+}
+
+cd /home/mineuser || {
+  warn $"Failed to move back to home after unzipping"
+  exit 1
+}
+
+warn $"Copying over allowlist..."
+
+cp old-minecraft/allowlist.json minecraft/allowlist.json || {
+  warn $"Failed to copy over allowlist.json"
+  exit 1
+}
+
+warn $"Copying over server.properties..."
+
+cp old-minecraft/server.properties minecraft/server.properties || {
+  warn $"Failed to copy over server.properties..."
+  exit 1
+}
+
+warn $"Copying over start.sh..."
+
+cp old-minecraft/start.sh minecraft/start.sh || {
+  warn $"Failed to copy over start.sh"
+  exit 1
+}
+
+warn $"Copying over worlds..."
+
+cp -r old-minecraft/worlds minecraft/worlds || {
+  warn $"Failed to copy over worlds"
+  exit 1
+}
+
+warn $"Complete..."
+warn $"Attempting to start server..."
+
+screen -S minecraft -X stuff $'cd ..\n'
+screen -S minecraft -X stuff $'cd minecraft\n'
+
+screen -S minecraft -X stuff $'./start.sh\n' || {
+  warn $"Failed to start server"
+  exit 1
+}
+
+sleep 3
+
+if [[ $(pgrep bedrock_server) ]]; then
+  warn $"Successfully started server! Enjoy!"
+  exit 0
+else
+  warn $"Failed to start server...check manually please"
+  exit 1
+fi
