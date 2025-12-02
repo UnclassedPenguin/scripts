@@ -117,6 +117,13 @@ cp old-minecraft/server.properties minecraft/server.properties || {
   exit 1
 }
 
+warn $"Copying over permissions.json"
+
+cp old-minecraft/permissions.json minecraft/permissions.json || {
+  warn $"Failed to copy over permissions.json..."
+  exit 1
+}
+
 warn $"Copying over start.sh..."
 
 cp old-minecraft/start.sh minecraft/start.sh || {
